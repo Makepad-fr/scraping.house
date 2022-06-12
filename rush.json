@@ -391,6 +391,10 @@
     {
       "packageName": "@scraping.house/cli",
       "projectFolder": "cli"
+    },
+    {
+      "packageName": "@scraping.house/aliexpress",
+      "projectFolder": "modules/aliexpress"
     }
     // {
     //   /**
