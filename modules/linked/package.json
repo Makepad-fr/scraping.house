@@ -14,10 +14,6 @@
     "lint": "node_modules/.bin/eslint -c ../.eslintrc.json --fix src/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Makepad-fr/linkedjs.git"
-  },
   "keywords": [
     "TypeScript",
     "JavaScript",
