@@ -36,6 +36,8 @@ scopes:
     description: All changed related to the common package
   - name: docs
     description: All changes related docs folder
+  - name: aliexpress
+    description: Module folder created with sample configuration files
 conventions:
   - name: build
     description: Changes that affect the build system or external dependencies
