@@ -395,6 +395,10 @@
     {
       "packageName": "@scraping.house/aliexpress",
       "projectFolder": "modules/aliexpress"
+    },
+    {
+      "packageName": "@scraping.house/commons",
+      "projectFolder": "modules/base"
     }
     // {
     //   /**
