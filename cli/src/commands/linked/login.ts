@@ -52,12 +52,12 @@ export default class LinkedLogin extends Command {
         flags.username
       )}`
     );
-    const linkedin = await Linked.init(
-      'firefox',
-      { headless: flags.headless },
-      undefined,
-      this.configHandler.getAuthContextPath(flags.username)
-    );
+    const linkedin = await Linked.init({
+      browser: 'firefox',
+      launchOptions: { headless: flags.headless },
+      contextOptions: undefined,
+      authenticatedContextPath: this.configHandler.getAuthContextPath(flags.username)
+    });
     await linkedin.login(flags.username, flags.password!);
     await linkedin.close();
     this.configHandler.addAccount(flags.username, flags.password!);

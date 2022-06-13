@@ -29,61 +29,16 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`s config get [FILE]`](#s-config-get-file)
-* [`s config set [FILE]`](#s-config-set-file)
 * [`s help [COMMAND]`](#s-help-command)
-* [`s linked company [FILE]`](#s-linked-company-file)
-* [`s linked group [FILE]`](#s-linked-group-file)
-* [`s linked login`](#s-linked-login)
-* [`s linked logout`](#s-linked-logout)
-* [`s linked me get [FILE]`](#s-linked-me-get-file)
-* [`s linked me post [FILE]`](#s-linked-me-post-file)
-* [`s linked page [FILE]`](#s-linked-page-file)
-* [`s linked profile`](#s-linked-profile)
 * [`s plugins`](#s-plugins)
-* [`s plugins:inspect PLUGIN...`](#s-pluginsinspect-plugin)
 * [`s plugins:install PLUGIN...`](#s-pluginsinstall-plugin)
+* [`s plugins:inspect PLUGIN...`](#s-pluginsinspect-plugin)
+* [`s plugins:install PLUGIN...`](#s-pluginsinstall-plugin-1)
 * [`s plugins:link PLUGIN`](#s-pluginslink-plugin)
 * [`s plugins:uninstall PLUGIN...`](#s-pluginsuninstall-plugin)
+* [`s plugins:uninstall PLUGIN...`](#s-pluginsuninstall-plugin-1)
+* [`s plugins:uninstall PLUGIN...`](#s-pluginsuninstall-plugin-2)
 * [`s plugins update`](#s-plugins-update)
-
-## `s config get [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s config get [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s config get
-```
-
-## `s config set [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s config set [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s config set
-```
 
 ## `s help [COMMAND]`
 
@@ -105,178 +60,6 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.10/src/commands/help.ts)_
 
-## `s linked company [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s linked company [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s linked company
-```
-
-## `s linked group [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s linked group [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s linked group
-```
-
-## `s linked login`
-
-login to LinkedIn account
-
-```
-USAGE
-  $ s linked login -u <value> [-p <value>] [--cookiePath <value>] [-f] [--headless]
-
-FLAGS
-  -f, --force             Override existing configuration
-  -p, --password=<value>  LinkedIn password
-  -u, --username=<value>  (required) LinkedIn username
-  --cookiePath=<value>    The path to save cookie file to
-  --[no-]headless         Use browser in headless mode
-
-DESCRIPTION
-  login to LinkedIn account
-
-EXAMPLES
-  $ s linked login
-```
-
-## `s linked logout`
-
-remove the saved LinkedIn account
-
-```
-USAGE
-  $ s linked logout [-u <value>]
-
-FLAGS
-  -u, --username=<value>  username of the account to remove
-
-DESCRIPTION
-  remove the saved LinkedIn account
-
-EXAMPLES
-  $ s linked logout
-```
-
-## `s linked me get [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s linked me get [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s linked me get
-```
-
-## `s linked me post [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s linked me post [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s linked me post
-```
-
-## `s linked page [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ s linked page [FILE] [-n <value>] [-f]
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ s linked page
-```
-
-## `s linked profile`
-
-scrape information from a LinkedIn user profile
-
-```
-USAGE
-  $ s linked profile -i <value> [-u <value>] [-o <value>] [--format csv|json] [--full] [--education] [--experiences]
-    [--certificates] [--fullName] [--shortDescription] [--location] [--about] [--isPremium] [--isInfluencer] [--skills]
-    [--incognito] [--headless]
-
-FLAGS
-  -i, --id=<value>        (required) The if of the LinkedIn user to scrape
-  -o, --output=<value>    The output file path
-  -u, --username=<value>  The username of the LinkedIn account to use
-  --about                 Get the about text of the user
-  --certificates          Get certifications of the user
-  --education             Get education information of the user
-  --experiences           Get education of the user
-  --format=<option>       [default: json] The format of the output
-                          <options: csv|json>
-  --full                  Get the full profile
-  --fullName              Get the user's full name
-  --[no-]headless         Enables the headless browsing
-  --incognito             Enables the incognito mode (without any authentication)
-  --isInfluencer          Check if the user has LinkedIn influencer badge on their account
-  --isPremium             Check if the user has LinkedIn premium badge on their account
-  --location              Get the location of the user
-  --shortDescription      Get the user's short description
-  --skills                Get user skills and endorsements
-
-DESCRIPTION
-  scrape information from a LinkedIn user profile
-
-EXAMPLES
-  $ s linked profile
-```
-
 ## `s plugins`
 
 List installed plugins.
@@ -296,6 +79,44 @@ EXAMPLES
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.0/src/commands/plugins/index.ts)_
+
+## `s plugins:install PLUGIN...`
+
+Installs a plugin into the CLI.
+
+```
+USAGE
+  $ s plugins:install PLUGIN...
+
+ARGUMENTS
+  PLUGIN  Plugin to install.
+
+FLAGS
+  -f, --force    Run yarn install with force flag.
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Installs a plugin into the CLI.
+
+  Can be installed from npm or a git url.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
+  the CLI without the need to patch and update the whole CLI.
+
+ALIASES
+  $ s plugins add
+
+EXAMPLES
+  $ s plugins:install myplugin 
+
+  $ s plugins:install https://github.com/someuser/someplugin
+
+  $ s plugins:install someuser/someplugin
+```
 
 ## `s plugins:inspect PLUGIN...`
 
@@ -382,6 +203,52 @@ DESCRIPTION
 
 EXAMPLES
   $ s plugins:link myplugin
+```
+
+## `s plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ s plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ s plugins unlink
+  $ s plugins remove
+```
+
+## `s plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ s plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ s plugins unlink
+  $ s plugins remove
 ```
 
 ## `s plugins:uninstall PLUGIN...`

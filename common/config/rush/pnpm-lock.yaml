@@ -83,7 +83,7 @@ importers:
       eslint-plugin-import: 2.25.4_eslint@8.8.0
       typescript: 4.5.5
 
-  ../../modules/linked:
+  ../../modules/base:
     specifiers:
       '@types/node': 17.0.14
       '@typescript-eslint/eslint-plugin': 5.10.2
@@ -98,6 +98,37 @@ importers:
       playwright-core: ^1.18.0
       typescript: 4.5.5
     dependencies:
+      playwright: 1.18.1
+      playwright-core: 1.18.1
+    devDependencies:
+      '@types/node': 17.0.14
+      '@typescript-eslint/eslint-plugin': 5.10.2_2595c2126aec4d4b6e944b931dabb4c2
+      '@typescript-eslint/parser': 5.10.2_eslint@8.8.0+typescript@4.5.5
+      eslint: 8.8.0
+      eslint-config-airbnb: 19.0.4_392f898cec7735a5f7a99430cbc0b4f4
+      eslint-config-airbnb-base: 15.0.0_392f898cec7735a5f7a99430cbc0b4f4
+      eslint-config-airbnb-typescript: 16.1.0_0225ccbc15f13de3af28125173a99015
+      eslint-config-prettier: 8.3.0_eslint@8.8.0
+      eslint-plugin-import: 2.25.4_eslint@8.8.0
+      typescript: 4.5.5
+
+  ../../modules/linked:
+    specifiers:
+      '@scraping.house/commons': workspace:*
+      '@types/node': 17.0.14
+      '@typescript-eslint/eslint-plugin': 5.10.2
+      '@typescript-eslint/parser': 5.10.2
+      eslint: 8.8.0
+      eslint-config-airbnb: 19.0.4
+      eslint-config-airbnb-base: 15.0.0
+      eslint-config-airbnb-typescript: 16.1.0
+      eslint-config-prettier: 8.3.0
+      eslint-plugin-import: 2.25.4
+      playwright: ^1.18.0
+      playwright-core: ^1.18.0
+      typescript: 4.5.5
+    dependencies:
+      '@scraping.house/commons': link:../base
       playwright: 1.18.1
       playwright-core: 1.18.1
     devDependencies:
@@ -994,7 +1025,7 @@ packages:
       '@typescript-eslint/scope-manager': 5.10.2
       '@typescript-eslint/types': 5.10.2
       '@typescript-eslint/typescript-estree': 5.10.2_typescript@4.5.5
-      debug: 4.3.3
+      debug: 4.3.4
       eslint: 8.8.0
       typescript: 4.5.5
     transitivePeerDependencies:
@@ -1078,10 +1109,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.10.2
       '@typescript-eslint/visitor-keys': 5.10.2
-      debug: 4.3.3
+      debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.5
+      semver: 7.3.7
       tsutils: 3.21.0_typescript@4.5.5
       typescript: 4.5.5
     transitivePeerDependencies:

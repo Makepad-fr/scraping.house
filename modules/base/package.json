@@ -1,9 +1,9 @@
 {
-  "name": "@scraping.house/linked",
+  "name": "@scraping.house/commons",
   "version": "0.0.1-beta",
   "description": "A toolkit to automate your LinkedIn interactions",
-  "main": "out/linked.js",
-  "types": "out/linked.d.ts",
+  "main": "out/commons.js",
+  "types": "out/commons.d.ts",
   "files": [
     "out"
   ],
@@ -36,8 +36,7 @@
   "homepage": "https://github.com/Makepad-fr/linkedjs#readme",
   "dependencies": {
     "playwright": "^1.18.0",
-    "playwright-core": "^1.18.0",
-    "@scraping.house/commons": "workspace:*"
+    "playwright-core": "^1.18.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.10.2",

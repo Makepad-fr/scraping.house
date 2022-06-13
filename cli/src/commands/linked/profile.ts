@@ -66,12 +66,13 @@ export default class LinkedProfile extends Command {
       this.error(`No account exists with username ${flags.username}.`);
     }
 
-    const linkedin = await Linked.init(
-      'firefox',
-      { headless: flags.headless },
-      undefined,
-      flags.username === undefined ? undefined : this.configHandler.getAuthContextPath(flags.username)
-    );
+    const linkedin = await Linked.init({
+      browser: 'firefox',
+      launchOptions: { headless: flags.headless },
+      contextOptions: undefined,
+      authenticatedContextPath:
+        flags.username === undefined ? '' : this.configHandler.getAuthContextPath(flags.username)
+    });
 
     const userProfile = await linkedin.user(flags.id, false);
 
