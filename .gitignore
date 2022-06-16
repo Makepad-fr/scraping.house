@@ -69,3 +69,4 @@ common/autoinstallers/*/.npmrc
 
 */tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
+**/*/out/
