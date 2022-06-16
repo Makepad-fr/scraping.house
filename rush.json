@@ -399,6 +399,10 @@
     {
       "packageName": "@scraping.house/commons",
       "projectFolder": "modules/base"
+    },
+    {
+      "packageName": "@scraping.house/aliexpress-example",
+      "projectFolder": "examples/aliexpress"
     }
     // {
     //   /**
