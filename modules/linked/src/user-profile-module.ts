@@ -1,12 +1,12 @@
 import { Page, errors, ElementHandle } from 'playwright-core';
+import splitDashes from '@scraping.house/commons/src/utils/string-helpers';
+import { AbstractUserProfileModule, StringHelpers } from '@scraping.house/commons';
 import Experience from './models/experience';
 import Role from './models/role';
 import selectors from './selectors';
-import splitDashes from './helpers/string-helpers';
 import DateInterval from './models/date-interval';
 import Education from './models/education';
 import School from './models/school';
-import Module from './models/module';
 import Certification from './models/certification';
 import { Skill } from './models/skill';
 import { User } from './models/user';
@@ -30,33 +30,9 @@ export interface UserProfile {
   skills?: Skill[];
 }
 
-export default class UserProfileModule extends Module {
-  private id: string;
-
+export default class UserProfileModule extends AbstractUserProfileModule {
   public constructor(id: string, page: Page) {
-    super(page);
-    this.id = id;
-  }
-
-  /**
-   * Function navigates to the user's LinkedIn profile page.
-   */
-  public async init() {
-    const u: string = encodeURI(`https://www.linkedin.com/in/${this.id}/`);
-    if (this.page.url() === u) {
-      return;
-    }
-    await this.page.goto(u);
-    console.log('Navigated to the user profile page');
-  }
-
-  /**
-   * Returns the full name of the LinkedIn user
-   * @returns The full name of the user
-   */
-  public async fullName(): Promise<string> {
-    await this.init();
-    return this.page.textContent(selectors.user.profile.base.fullName) as Promise<string>;
+    super(selectors.user.profile.base, 'https://linkedin.com/in/', id, page);
   }
 
   /**
@@ -64,9 +40,7 @@ export default class UserProfileModule extends Module {
    * @returns The user's short description
    */
   public async shortDescription(): Promise<string> {
-    await this.init();
-
-    return this.page.textContent(selectors.user.profile.base.shortDesc) as Promise<string>;
+    return super.getTextualContent(selectors.user.profile.base.shortDesc);
   }
 
   /**
@@ -74,16 +48,14 @@ export default class UserProfileModule extends Module {
    * @returns The user's location
    */
   public async location(): Promise<string> {
-    await this.init();
-
-    return this.page.textContent(selectors.user.profile.base.location) as Promise<string>;
+    return super.getTextualContent(selectors.user.profile.base.location);
   }
 
   /**
    * Get the user's about text from the user's profile
    * @returns The user about text from the user's profile
    */
-  public async about(): Promise<string> {
+  public override async bio(): Promise<string> {
     await this.init();
 
     try {
@@ -211,7 +183,7 @@ export default class UserProfileModule extends Module {
                 name: schoolName,
                 url: schoolURL
               };
-              const di: string[] = splitDashes(dateInterval);
+              const di: string[] = StringHelpers.splitDashes(dateInterval);
               return <Education>{
                 school,
                 fieldOfStudy,
@@ -445,7 +417,7 @@ export default class UserProfileModule extends Module {
         roleInfo = await roleInfo;
         const roleLocation: ElementHandlePromiseOrStringPromiseOrString =
           roleInfo.length > 2 ? roleInfo[2]!.textContent() : '';
-        const ti: string[] = splitDashes((await roleInfo[0]!.textContent()) ?? '');
+        const ti: string[] = StringHelpers.splitDashes((await roleInfo[0]!.textContent()) ?? '');
         return Promise.all([
           roleName,
           contractType,
@@ -515,7 +487,7 @@ export default class UserProfileModule extends Module {
         .filter((e) => e.length !== 0)
         .map((e) => e.trim());
       const contractType = parsedCompanyName[1] ?? '';
-      const splittedTimeInterval: string[] = splitDashes(tInterval);
+      const splittedTimeInterval: string[] = StringHelpers.splitDashes(tInterval);
       const dateInterval: DateInterval = {
         start: splittedTimeInterval[0]!.trim(),
         end: (splittedTimeInterval.length === 2 ? splittedTimeInterval[1] : splittedTimeInterval[0])!.trim()

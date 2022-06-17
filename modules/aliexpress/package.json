@@ -37,7 +37,8 @@
   "homepage": "https://github.com/Makepad-fr/scraping.house#readme",
   "dependencies": {
     "playwright": "^1.18.0",
-    "playwright-core": "^1.18.0"
+    "playwright-core": "^1.18.0",
+    "@scraping.house/commons": "workspace:*"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.10.2",
