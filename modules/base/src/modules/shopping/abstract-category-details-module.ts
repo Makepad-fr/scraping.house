@@ -1,1 +1,1 @@
-export default abstract class AbsractCategoryDetailsModule {}
+export default abstract class AbstractCategoryDetailsModule {}

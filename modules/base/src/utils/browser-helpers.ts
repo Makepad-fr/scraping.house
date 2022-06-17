@@ -1,4 +1,4 @@
-import { ElementHandle, Page } from 'playwright-core';
+import { Browser, BrowserContext, ElementHandle, Page } from 'playwright-core';
 
 export default class BrowserHelpers {
   private page: Page;
@@ -194,4 +194,23 @@ export default class BrowserHelpers {
       return node.scrollHeight - Math.abs(node.scrollTop) === node.clientHeight;
     });
   }
+}
+
+/**
+ * Save the given browser context to the given file path
+ * @param context The current browser context
+ * @param filePath The filePath to save the authenticated browser context
+ */
+export async function saveBrowserContext(context: BrowserContext, filePath: string) {
+  await context.storageState({ path: filePath });
+}
+
+/**
+ * Loads a previously saved browser context in a new browser context
+ * @param browser The browser to which we want to load authenticated context
+ * @param filePath The file path of the authenticated context
+ * @returns Returns the browser context created from the saved context
+ */
+export async function loadBrowserContext(browser: Browser, filePath: string) {
+  return browser.newContext({ storageState: filePath });
 }

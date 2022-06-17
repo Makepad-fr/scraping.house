@@ -1,10 +1,17 @@
-import { AbstractModule, ModuleInitializationOptions, ModuleOptions } from '@scraping.house/commons';
+import {
+  AbstractModule,
+  isFileExists,
+  ModuleInitializationOptions,
+  ModuleOptions,
+  saveBrowserContext
+} from '@scraping.house/commons';
+import { RequireAuthentication } from '@scraping.house/commons/out/modules/require-authentication';
 import selectors from './selectors';
 import UserProfileModule from './user-profile-module';
 
 export { UserProfile } from './user-profile-module';
 
-export default class Linked extends AbstractModule {
+export default class Linked extends AbstractModule implements RequireAuthentication {
   protected static override readonly BASE_URL = 'https://linkedin.com';
 
   /**
@@ -38,7 +45,7 @@ export default class Linked extends AbstractModule {
    * @param rememberMe The boolean indicating that login credentials will be remembered next time.
    */
   public async login(username: string, password: string, rememberMe: boolean = true) {
-    if (AbstractModule.isFileExists(super.authenticatedContextPath)) {
+    if (isFileExists(super.authenticatedContextPath)) {
       // If the authenticated context already exists, do nothing
       return;
     }
@@ -46,7 +53,7 @@ export default class Linked extends AbstractModule {
     await super.page.fill(selectors.login.password, password);
     await super.page.click(selectors.login.submit);
     if (rememberMe) {
-      await AbstractModule.saveAuthenticatedContext(super.context, super.authenticatedContextPath);
+      await saveBrowserContext(super.context, super.authenticatedContextPath);
     }
   }
 

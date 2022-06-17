@@ -9,7 +9,8 @@ import {
   Page,
   webkit
 } from 'playwright-core';
-import fs from 'fs';
+import { loadBrowserContext } from '../utils/browser-helpers';
+import { isFileExists } from '../utils/file-utils';
 
 export interface ModuleOptions {
   browser: Browser;
@@ -58,9 +59,9 @@ export default abstract class AbstractModule {
     if (
       authenticatedContextPath !== undefined &&
       authenticatedContextPath !== null &&
-      this.isFileExists(authenticatedContextPath)
+      isFileExists(authenticatedContextPath)
     ) {
-      bc = await this.loadAuthenticatedContext(b, authenticatedContextPath);
+      bc = await loadBrowserContext(b, authenticatedContextPath);
     } else {
       bc = await b.newContext(contextOptions);
     }
@@ -82,37 +83,6 @@ export default abstract class AbstractModule {
   }
 
   /**
-   * Saves the authenticated browser context
-   * @param context The current browser context
-   * @param filePath The filepath to save the authenticated browser context
-   */
-  protected static async saveAuthenticatedContext(context: BrowserContext, filePath: string) {
-    await context.storageState({ path: filePath });
-  }
-
-  /**
-   * Loads a previously saved browser context in a new browser context
-   * @param browser The browser to which we want to load authenticated context
-   * @param filePath The file path of the authenticated context
-   * @returns Returns the browser context created from the saved context
-   */
-  protected static async loadAuthenticatedContext(
-    browser: Browser,
-    filePath: string
-  ): Promise<BrowserContext> {
-    return browser.newContext({ storageState: filePath });
-  }
-
-  /**
-   * Checks if a file exists or not
-   * @param filePath The path of the file to check
-   * @returns true if file path exists, false if not
-   */
-  protected static isFileExists(filePath: string): boolean {
-    return fs.existsSync(filePath);
-  }
-
-  /**
    * Function closes page, context and browser
    */
   public async close() {
@@ -120,6 +90,4 @@ export default abstract class AbstractModule {
     await this.context.close();
     await this.browser.close();
   }
-
-  abstract login(username: string, password: string, rememberMe: boolean): Promise<void>;
 }

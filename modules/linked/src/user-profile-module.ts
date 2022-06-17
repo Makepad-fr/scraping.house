@@ -1,5 +1,5 @@
 import { Page, errors, ElementHandle } from 'playwright-core';
-import { AbstractUserProfileModule, StringHelpers } from '@scraping.house/commons';
+import { AbstractUserProfileModule, splitDashes } from '@scraping.house/commons';
 import Experience from './models/experience';
 import Role from './models/role';
 import selectors from './selectors';
@@ -182,7 +182,7 @@ export default class UserProfileModule extends AbstractUserProfileModule {
                 name: schoolName,
                 url: schoolURL
               };
-              const di: string[] = StringHelpers.splitDashes(dateInterval);
+              const di: string[] = splitDashes(dateInterval);
               return <Education>{
                 school,
                 fieldOfStudy,
@@ -418,7 +418,7 @@ export default class UserProfileModule extends AbstractUserProfileModule {
         roleInfo = await roleInfo;
         const roleLocation: ElementHandlePromiseOrStringPromiseOrString =
           roleInfo.length > 2 ? roleInfo[2]!.textContent() : '';
-        const ti: string[] = StringHelpers.splitDashes((await roleInfo[0]!.textContent()) ?? '');
+        const ti: string[] = splitDashes((await roleInfo[0]!.textContent()) ?? '');
         return Promise.all([
           roleName,
           contractType,
@@ -488,7 +488,7 @@ export default class UserProfileModule extends AbstractUserProfileModule {
         .filter((e) => e.length !== 0)
         .map((e) => e.trim());
       const contractType = parsedCompanyName[1] ?? '';
-      const splittedTimeInterval: string[] = StringHelpers.splitDashes(tInterval);
+      const splittedTimeInterval: string[] = splitDashes(tInterval);
       const dateInterval: DateInterval = {
         start: splittedTimeInterval[0]!.trim(),
         end: (splittedTimeInterval.length === 2 ? splittedTimeInterval[1] : splittedTimeInterval[0])!.trim()
