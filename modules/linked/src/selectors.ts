@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export default {
   login: {
     username: '//*[@id="session_key"]',
