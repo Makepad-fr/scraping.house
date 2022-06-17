@@ -384,13 +384,13 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    // {
+    //   "packageName": "@scraping.house/cli",
+    //   "projectFolder": "cli"
+    // },
     {
       "packageName": "@scraping.house/linked",
       "projectFolder": "modules/linked"
-    },
-    {
-      "packageName": "@scraping.house/cli",
-      "projectFolder": "cli"
     },
     {
       "packageName": "@scraping.house/aliexpress",
