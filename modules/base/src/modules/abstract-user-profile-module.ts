@@ -2,12 +2,7 @@ import { Page } from 'playwright-core';
 import URLFactory from '../utils/url-factory';
 import AbstractSubModule from './abstract-sub-module';
 import { Logger } from '../utils/logger';
-
-//TODO: Move this to a standalone file
-interface UserProfileSelectors {
-  fullName: string;
-  bio: string;
-}
+import UserProfileSelectors from '../selectors/user-profile-selectors';
 
 export default abstract class AbstractUserProfileModule extends AbstractSubModule {
   private readonly id: string;

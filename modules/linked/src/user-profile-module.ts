@@ -1,5 +1,4 @@
 import { Page, errors, ElementHandle } from 'playwright-core';
-import splitDashes from '@scraping.house/commons/src/utils/string-helpers';
 import { AbstractUserProfileModule, StringHelpers } from '@scraping.house/commons';
 import Experience from './models/experience';
 import Role from './models/role';
@@ -32,7 +31,7 @@ export interface UserProfile {
 
 export default class UserProfileModule extends AbstractUserProfileModule {
   public constructor(id: string, page: Page) {
-    super(selectors.user.profile.base, 'https://linkedin.com/in/', id, page);
+    super({ ...selectors.user.profile.base, bio: '' }, 'https://linkedin.com/in/', id, page);
   }
 
   /**
@@ -288,7 +287,8 @@ export default class UserProfileModule extends AbstractUserProfileModule {
 
   /**
    * Get the skills and endorsements of the current user
-   * @param detailed A boolean indicating that the result should contains the list of users endorsed the current user's skill or just the number of endorsements
+   * @param detailed A boolean indicating that the result should contains the list
+   * of users endorsed the current user's skill or just the number of endorsements
    * @returns An array of user skills and endorsements
    */
   public async skills(detailed: boolean = true): Promise<Skill[]> {
@@ -318,7 +318,8 @@ export default class UserProfileModule extends AbstractUserProfileModule {
         this.helpers.safeTextContent(selectors.user.profile.skills.entityName, skillItem),
         this.helpers.isElementPresent(selectors.user.profile.skills.assesmentBadge, skillItem),
         this.helpers.safeTextContent(
-          `${selectors.user.profile.skills.itemDetailsLink}${selectors.user.profile.skills.numberOfEndorsements}`,
+          `${selectors.user.profile.skills.itemDetailsLink}` +
+            `${selectors.user.profile.skills.numberOfEndorsements}`,
           skillItem
         )
       ];
