@@ -1,19 +1,19 @@
 import { Page } from 'playwright-core';
-import URLFactory from '../utils/url-factory';
 import AbstractSubModule from './abstract-sub-module';
 import { Logger } from '../utils/logger';
 import UserProfileSelectors from '../selectors/user-profile-selectors';
+import URLFactory from '../utils/url-factory';
 
 export default abstract class AbstractUserProfileModule extends AbstractSubModule {
   private readonly id: string;
-  private readonly urlFactory: URLFactory;
+  protected readonly urlFactory: URLFactory;
   private static logger: Logger = new Logger('AbstractUserProfileModule');
   private readonly selectors: UserProfileSelectors;
-  public constructor(selectors: UserProfileSelectors, baseUrl: string, id: string, page: Page) {
-    super(page);
+  protected constructor(selectors: UserProfileSelectors, baseURL: string, id: string, page: Page) {
+    super(page, baseURL);
     this.id = id;
-    this.urlFactory = new URLFactory(baseUrl);
     this.selectors = selectors;
+    this.urlFactory = new URLFactory(baseURL);
   }
 
   public async init() {

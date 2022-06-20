@@ -2,18 +2,21 @@ import { Page } from 'playwright-core';
 import BrowserHelpers from '../utils/browser-helpers';
 
 export default abstract class AbstractSubModule {
+  protected readonly baseURL: string;
+
   protected page: Page;
 
-  protected helpers: BrowserHelpers;
+  protected readonly helpers: BrowserHelpers;
 
-  protected constructor(page: Page) {
+  protected constructor(page: Page, baseURL: string) {
     this.page = page;
     this.helpers = new BrowserHelpers(this.page);
+    this.baseURL = baseURL;
   }
 
   protected async close() {
     await this.page.close();
   }
 
-  protected abstract init(): void;
+  public abstract init(): Promise<void>;
 }

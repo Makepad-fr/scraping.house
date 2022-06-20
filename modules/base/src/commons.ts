@@ -12,6 +12,9 @@ import { splitDashes } from './utils/string-helpers';
 import URLFactory from './utils/url-factory';
 import { Logger } from './utils/logger';
 import { isFileExists } from './utils/file-utils';
+import RequireCookies from './modules/require-cookies';
+import RequireNotifications from './modules/require-notifications';
+import AbstractCategory, { AbstractSubCategory } from './models/AbstractCategory';
 
 export {
   AbstractShoppingModule,
@@ -31,5 +34,9 @@ export {
   Logger,
   isFileExists,
   saveBrowserContext,
-  loadBrowserContext
+  loadBrowserContext,
+  RequireCookies,
+  RequireNotifications,
+  AbstractCategory,
+  AbstractSubCategory
 };
