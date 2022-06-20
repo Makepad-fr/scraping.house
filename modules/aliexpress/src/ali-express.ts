@@ -1,9 +1,17 @@
 // import {
 //   LaunchOptions, BrowserContextOptions, BrowserType, BrowserContext,
 // } from 'playwright-core';
-import { AbstractModule, ModuleInitializationOptions, ModuleOptions } from '@scraping.house/commons';
+import {
+  AbstractShoppingModule,
+  ModuleInitializationOptions,
+  ModuleOptions,
+  RequireCookies
+} from '@scraping.house/commons';
+import selectors from './selectors';
+import CategoryListModule from './category-list-module';
 
-export default class AliExpress extends AbstractModule {
+// TODO: Implement AliExpress login
+export default class AliExpress extends AbstractShoppingModule implements RequireCookies {
   protected static override readonly BASE_URL: string = 'https://aliexpress.com';
 
   public static async init({
@@ -21,9 +29,23 @@ export default class AliExpress extends AbstractModule {
     return new AliExpress(options);
   }
 
-  login(username: string, password: string, rememberMe: boolean): Promise<void> {
-    throw new Error('Method not implemented.');
+  public async handleCookies(action: 'accept' | 'reject'): Promise<void> {
+    let buttonSelector = `${selectors.cookies.wrapper}${selectors.cookies.buttonsWrapper}`;
+    if (action === 'accept') {
+      buttonSelector = `${buttonSelector}${selectors.cookies.acceptButton}`;
+    } else {
+      buttonSelector = `${buttonSelector}${selectors.cookies.rejectButton}`;
+    }
+    await this.page.waitForSelector(buttonSelector);
+    await this.page.click(buttonSelector);
   }
+
+  public async categoryList(): Promise<CategoryListModule> {
+    const module = new CategoryListModule(this.page);
+    await module.init();
+    return module;
+  }
+
   //   public static async init(
   //     browser: 'chrome' | 'firefox' | 'webkit' = 'firefox',
   //     launchOptions: LaunchOptions = {},
