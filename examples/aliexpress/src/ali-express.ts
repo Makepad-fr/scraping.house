@@ -11,7 +11,9 @@ async function main() {
   });
   await aliExpress.handleCookies('accept');
   const aliExpressCategoryList = await aliExpress.categoryList();
-  await aliExpressCategoryList.getAll();
+  const categories = await aliExpressCategoryList.getAll();
+  console.log('Categories');
+  console.log(JSON.stringify(categories, undefined, 4));
   // TODO: Get the list of all categories
 
   // TODO: Accept/refuse notifications
